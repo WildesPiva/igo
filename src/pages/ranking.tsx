@@ -1,6 +1,5 @@
 import  Head from 'next/head'
 import { NavBar } from '../components/NavBar'
-import withAuth from '../components/withAuth'
 import styles from '../styles/Pages/Ranking.module.css'
 
 function Ranking() {
@@ -19,4 +18,4 @@ function Ranking() {
   )
 }
 
-export default withAuth(Ranking)
+export default Ranking
