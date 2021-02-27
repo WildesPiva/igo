@@ -1,0 +1,86 @@
+.container{
+  color: var(--white);
+  background: var(--blue);
+  height: 100vh;
+  padding: 2rem 0;
+  display: flex;
+}
+
+.logoGrande {
+  max-height: 95%;
+}
+
+.container section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: auto 100px;
+}
+
+.logoMoveit {
+  max-width: 350px;
+  margin-bottom: 3rem;
+}
+
+.container section > div {
+  margin-top: 3rem;
+  text-align: left;
+  width: 100%;
+}
+
+.apresentation strong{
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.apresentation > p {
+  color: #b3b9ff;
+  display: flex;
+  max-width: 280px;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.apresentation > p > img{
+  margin-right: 0.8rem;
+}
+
+.inputLogin {
+  display: flex;
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+.inputLogin > input {
+  border: 0;
+  padding: 1rem;
+  color: var(--white);
+  outline-color: var(--blue);
+
+  background: linear-gradient(90deg, var(--blue-dark) 0%, rgba(73, 83, 184, 0.2) 100%);
+  border-radius: 5px 0px 0px 5px;  
+}
+
+
+input[type="text"].placeholderColor::-webkit-input-placeholder{
+  color: #b3b9ff;
+}
+
+input[type="text"].placeholderColor::-moz-placeholder {
+  color: #b3b9ff;
+}
+
+.inputLogin > button {
+  font-size: 0;
+  border: 0;
+  padding: 1rem;
+  outline-color: var(--blue);  
+  border-radius: 0 5px 5px 0;
+}
+
+.inputLogin > button > img {
+  width: 15px;
+  height: 15px;
+}
