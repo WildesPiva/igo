@@ -4,17 +4,27 @@
     box-sizing: border-box;
 }
 
-:root{
-    /* --white:#ffffff1a; */
-    /* --background:#19191a; */
-    /* --title: #5e6574; */
-    
-    --white:#FFFFFF;
+.darkTheme {
+    --box:#ffffff1a;
+    --background:#19191a;
+    --title: #5e6574;
+    --lines: #f0f1f31c;
+    --transparent-box: #00000048;
+}
+
+.lightTheme {
+    --box:#ffffff7e;
     --background:#F2F3F5;
+    --title: #2E384D;
+    --lines: #f0f1f3; 
+    --transparent-box: #f2f3f577;
+}
+
+:root{
+    --white:#FFFFFF;
     --gray-line:#DCEDE0;
     --text: #666666;
     --title-highlight: #B3B9FF;
-    --title: #2E384D;
     --red: #E83F5B;
     --green: #4CD62B;
     --blue: #5965E0;

@@ -56,7 +56,7 @@
 }
 
 .container table > tbody > tr {
-  background-color: var(--white);
+  background-color: var(--box);
   margin-bottom: 1rem;
 } 
 

@@ -8,7 +8,8 @@ interface RankingProps {
   level: number,
   currentExperience: number,
   challengesCompleted: number,
-  username: string
+  username: string,
+  theme: string
 }
 
 function Ranking(props:RankingProps) {
@@ -55,14 +56,15 @@ function Ranking(props:RankingProps) {
 
 export const getServerSideProps:GetServerSideProps = async(ctx) => {
 
-  const { level, currentExperience, challengesCompleted, username } = ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, username, theme } = ctx.req.cookies;
 
   return {
     props:{
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      username: username ? String(username) : ''
+      username: username ? String(username) : '',
+      theme: theme ? String(theme) : 'lightTheme'
     }
   }
 }

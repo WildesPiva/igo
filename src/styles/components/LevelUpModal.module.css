@@ -1,5 +1,5 @@
 .overlay {
-  background: rgba(242, 243, 245, 0.8);
+  background: var(--transparent-box);
   position: fixed;
   top: 0;
   bottom: 0;
@@ -15,7 +15,7 @@
 }
 
 .container {
-  background-color: var(--white);
+  background-color: var(--box);
   width: 100%;
   max-width: 400px;
   padding: 2rem 3rem;
