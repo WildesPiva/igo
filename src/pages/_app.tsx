@@ -1,9 +1,16 @@
 import '../styles/global.css'
-import withAuth from '../components/withAuth'
-function MyApp({ Component, pageProps }) {
+import { UserProvider } from '../contexts/UserContext'
+import Page from '../components/Page'
+
+function MyApp({ Component, pageProps, ...rest}) {
+
   return( 
-    <Component {...pageProps} />   
+    <UserProvider username={pageProps.username}>
+      <Page>
+        <Component {...pageProps}/>
+      </Page>
+    </UserProvider>
   )
 }
 
-export default withAuth(MyApp)
+export default MyApp

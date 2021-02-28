@@ -1,19 +1,16 @@
-import Login from '../pages/login'
-import Cookies from 'js-cookie'
 import { NavBar } from '../components/NavBar'
+import Login from '../pages/login'
 
-const withAuth = Component => {
+const withAuth = (Component) => {
   
   const Auth = (props) => {
     // Login data added to props via redux-store (or use react context for example)
-    // const { isLoggedIn } = props;
-    const isLoggedIn = Cookies.get('username') ? true : false;
-    // const { isLoggedIn } = {isLoggedIn:true};
+    const { isLoggedIn } = props;
 
     // If user is not logged in, return login component
     if (!isLoggedIn) {
       return (
-        <Login />
+        <Login username=""/>
       );
     }
 

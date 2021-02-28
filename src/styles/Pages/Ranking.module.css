@@ -2,20 +2,68 @@
   height: 100vh;
   max-width: 992px;
   margin: 0 auto;
-  padding: 2.5rem 2rem;
+  padding: 1.5rem 2rem;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 }
 
 .container section {
+  margin-left: 7rem;
   flex: 1;
-  gap: 6.25rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
   padding: 2rem;
 }
 
+.container section h1 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+}
+
 .container section > div {
-  height: 100%;
+  display: flex;
+}
+
+.container table {
+  flex: 1;
+  margin-top: -10px; /* correct offset on first border spacing if desired */
+  border-spacing: 0 10px;
+}
+
+.container table > thead > tr td {
+  font-size: .8rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  text-transform: uppercase;
+  color: var(--texto);
+  opacity: 0.5;
+}
+
+.container table > tbody > tr td:first-child {
+  font-size: 2rem;
+  width: 100px;
+  font-weight: 500;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+
+  border-top-left-radius: 5px; 
+  border-bottom-left-radius: 5px;
+  border-right: 5px solid var(--background);
+}
+
+.container table > tbody > tr td:last-child {
+  border-bottom-right-radius: 5px; 
+  border-top-right-radius: 5px; 
+}
+
+.container table > tbody > tr {
+  background-color: var(--white);
+  margin-bottom: 1rem;
+} 
+
+.container table > tbody > tr > td {
+  padding: 1rem;
+}
+
+.container table > tbody > tr > td b {
+  color: var(--blue);
 }

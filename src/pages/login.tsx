@@ -1,14 +1,29 @@
 import  Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import Cookies from 'js-cookie'
+import { useContext, useEffect, useState } from 'react'
 import styles from '../styles/Pages/Login.module.css'
+import { UserContext } from '../contexts/UserContext'
+import { GetServerSideProps } from 'next'
 
-export default function Login() {
+interface LoginProps {
+  username: string
+}
+
+
+export default function Login(props:LoginProps) {
   const router = useRouter()
-  const [colorButton, setColorButton] = useState('var(--blue-dark)')
-  const [valueLogin, setValueLogin] = useState('')
-  
+  const { saveUser, username } = useContext(UserContext)
+  const [colorButton, setColorButton] = useState(props.username ? 'var(--green)' : 'var(--blue-dark)')
+  const [valueLogin, setValueLogin] = useState(props.username)
+
+  useEffect(()=>{
+    if (username){
+      router.replace('/')
+    }else{
+      router.replace('/login')
+    }
+  },[])
+
   const handleChange = (e) => {
 
     setValueLogin(e.target.value)
@@ -26,7 +41,7 @@ export default function Login() {
     //   return
     // }
 
-    Cookies.set('username', valueLogin)
+    saveUser(valueLogin)
     router.replace('/')
   }
 
@@ -76,4 +91,15 @@ export default function Login() {
       </section>
     </div>
   )
+}
+
+export const getServerSideProps:GetServerSideProps = async(ctx) => {
+
+  const { username } = ctx.req.cookies;
+  
+  return {
+    props:{
+      username: username ? String(username) : ''
+    }
+  }
 }

@@ -14,6 +14,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   padding: 2rem;
+  margin-left: 7rem;
 }
 
 .container section > div {
