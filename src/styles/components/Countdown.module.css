@@ -58,7 +58,7 @@
 }
 
 .countDownButtonActive {
-  background: var(--white);
+  background: var(--box);
   color: var(--title);
 }
 
