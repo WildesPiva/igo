@@ -1,5 +1,5 @@
 import  Head from 'next/head'
-import { NavBar } from '../components/NavBar'
+// import { NavBar } from '../components/NavBar'
 import styles from '../styles/Pages/Ranking.module.css'
 
 function Ranking() {
@@ -10,7 +10,7 @@ function Ranking() {
           <title>Ranking | I Go.it</title>
       </Head>
 
-      <NavBar/>
+      {/* <NavBar/> */}
 
 
 

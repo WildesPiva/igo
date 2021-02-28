@@ -1,9 +1,11 @@
 import  Head from 'next/head'
+import { useRouter } from 'next/router'
 import { useState } from 'react'
-
+import Cookies from 'js-cookie'
 import styles from '../styles/Pages/Login.module.css'
 
 export default function Login() {
+  const router = useRouter()
   const [colorButton, setColorButton] = useState('var(--blue-dark)')
   const [valueLogin, setValueLogin] = useState('')
   
@@ -17,6 +19,15 @@ export default function Login() {
       setColorButton('var(--blue-dark)')
     }
 
+  }
+
+  const handleLogin = ()=> {
+    // if (!valueLogin){
+    //   return
+    // }
+
+    Cookies.set('username', valueLogin)
+    router.replace('/')
   }
 
   return (
@@ -55,7 +66,7 @@ export default function Login() {
           <button 
             type="button" 
             style={{  backgroundColor: colorButton }}
-            onClick={ () => window.location.replace('/') }
+            onClick={ handleLogin }
           >
             <img src="icons/arrow-right.svg" alt="Level" />
           </button> 

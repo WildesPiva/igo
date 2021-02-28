@@ -5,7 +5,7 @@ import { Countdown } from '../components/Countdown'
 import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox'
-import { NavBar } from '../components/NavBar'
+// import { NavBar } from '../components/NavBar'
 
 
 import styles from '../styles/Pages/Home.module.css'
@@ -31,7 +31,7 @@ export default function Home(props:HomeProps) {
           <title>Início | I Go.it</title>
       </Head>
 
-      <NavBar/>
+      {/* <NavBar/> */}
 
       <ExperienceBar/>
 
