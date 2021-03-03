@@ -92,7 +92,7 @@
 }
 
 .theme button svg {
-  margin: 0.5rem 0;
+  margin: 0;
   width: 2rem;
   height: 2rem;
   opacity: 0.5;
@@ -102,4 +102,66 @@
   stroke-width: 2.5; 
   stroke-linecap: "round";
   stroke-linejoin: "round"
+}
+
+.person{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  padding-top: 10px;
+  border-radius: 5px;
+  transition: all ease 0.5s;
+}
+
+.person:hover{
+  background: var(--box);
+}
+
+.person:hover button:not(:first-child){
+  visibility: visible;
+  opacity: 1;
+}
+
+.person button:focus + button:not(:first-child), .person button:not(:first-child):focus{
+  visibility: visible;
+  opacity: 1;
+}
+
+.person button:focus {
+  background: var(--box);
+}
+
+.person img {
+  border-radius: 50%;
+}
+
+.person button{
+  border: 0;
+  border-radius: 2px;
+}
+.person > button:first-child{
+  font-size: 0;
+  border-radius: 50%;
+}
+
+.person > button:not(:first-child){
+  margin-top: 10px;
+  background: transparent;
+  transition: all ease 0.5s;
+  visibility: hidden;
+  
+  opacity: 0;
+  gap: 0.5rem;
+  padding: 0 10px;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--red);
+  color: var(--white);
 }

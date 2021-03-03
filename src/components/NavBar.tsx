@@ -6,9 +6,14 @@ import styles from '../styles/components/NavBar.module.css'
 
 export function NavBar () {
   const router = useRouter()
-  const { changeTheme } = useContext(UserContext)
+  const { changeTheme, username, logout } = useContext(UserContext)
+  
+  const exit = () =>{
+    logout()
+    router.reload()
+  }
 
-  return (
+  return (<>
     <div className={styles.container}>
       <img src="/logo.svg" alt="Icone Moveit Menu"/>
       <nav>
@@ -49,6 +54,18 @@ export function NavBar () {
         </button>
       </div>
 
+
     </div>
-  )
+      <div className={styles.person}>
+        <button>
+          <img 
+            src={`https://github.com/${username}.png`} 
+            width={30}
+            height={30}
+            alt={`${username}`}
+          />
+        </button>
+        <button onClick={exit}>Sair</button>
+      </div>
+  </>)
 }

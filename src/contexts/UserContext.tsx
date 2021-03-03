@@ -4,7 +4,8 @@ import Cookies from 'js-cookie'
 interface UserContextData {
   username: string;
   saveUser: (user:string) => void;
-  changeTheme: () => void
+  changeTheme: () => void,
+  logout: () => void
 }
 
 interface UserProviderProps {
@@ -47,12 +48,21 @@ export function UserProvider({children, ...rest }:UserProviderProps) {
     }
   }
 
+  function logout (){
+    Cookies.remove('username')
+    Cookies.remove('level')
+    Cookies.remove('currentExperience')
+    Cookies.remove('challengesCompleted')
+    Cookies.remove('theme')
+  }
+
   return (
     <UserContext.Provider 
       value={{
         username,
         saveUser,
-        changeTheme
+        changeTheme,
+        logout
       }}
     >
       {children}
