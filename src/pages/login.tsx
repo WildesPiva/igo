@@ -39,7 +39,7 @@ export default function Login() {
           <strong>Bem-vindo</strong>
 
           <p>
-            <img src="icons/github.svg" alt="Level" />
+            <img src="icons/google.svg" alt="Level" />
             Faça login com a sua conta Google
           </p>
 
