@@ -77,7 +77,7 @@ input[type="text"].placeholderColor::-moz-placeholder {
   border: 0;
   padding: 1rem;
   outline-color: var(--blue);  
-  border-radius: 0 5px 5px 0;
+  border-radius: 5px 0;
 }
 
 .inputLogin > button > img {

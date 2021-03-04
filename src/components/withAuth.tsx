@@ -10,7 +10,7 @@ const withAuth = (Component) => {
     // If user is not logged in, return login component
     if (!isLoggedIn) {
       return (
-        <Login username=""/>
+        <Login />
       );
     }
 

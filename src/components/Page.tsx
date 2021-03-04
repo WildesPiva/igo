@@ -1,6 +1,7 @@
-import { ReactNode, useContext } from 'react';
+import { useSession } from 'next-auth/client'
+import { ReactNode } from 'react';
 import { NavBar } from '../components/NavBar'
-import { UserContext } from '../contexts/UserContext';
+// import { UserContext } from '../contexts/UserContext';
 import Login from '../pages/login'
 
 interface pageProps {
@@ -8,13 +9,14 @@ interface pageProps {
 }
 
 const Page = (props:pageProps) => {
-  const { username } = useContext(UserContext)
-  const isLoggedIn = true ? username : false
+  const [ session, loading ] = useSession()
+  // const { username } = useContext(UserContext)
+  // const isLoggedIn = true ? username : false
 
-  if (!isLoggedIn) {
+  if (!session) {
     
     return (
-      <Login username=""/>
+      <Login />
     );
   }
 

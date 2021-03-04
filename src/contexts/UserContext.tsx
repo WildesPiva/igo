@@ -1,11 +1,15 @@
 import { createContext, useState, ReactNode, useEffect } from 'react'
+import { signIn, signOut, useSession } from 'next-auth/client'
+
 import Cookies from 'js-cookie'
 
 interface UserContextData {
-  username: string;
-  saveUser: (user:string) => void;
   changeTheme: () => void,
-  logout: () => void
+  logout: () => void,
+  signIn, 
+  signOut,
+  session,
+  loading
 }
 
 interface UserProviderProps {
@@ -17,14 +21,9 @@ interface UserProviderProps {
 export const UserContext = createContext({} as UserContextData)
 
 export function UserProvider({children, ...rest }:UserProviderProps) {
-  const [username, setUsername] = useState(rest.username);
+  const [ session, loading ] = useSession()
   const [theme, setTheme] = useState(rest.theme === 'darkTheme' ? 'darkTheme' : 'lightTheme');
   
-  function saveUser(user:string){
-    setUsername(user)
-    Cookies.set('username', user)
-  }
-
   useEffect(()=>{
     saveTheme(theme)
   },[])
@@ -49,7 +48,6 @@ export function UserProvider({children, ...rest }:UserProviderProps) {
   }
 
   function logout (){
-    Cookies.remove('username')
     Cookies.remove('level')
     Cookies.remove('currentExperience')
     Cookies.remove('challengesCompleted')
@@ -59,10 +57,12 @@ export function UserProvider({children, ...rest }:UserProviderProps) {
   return (
     <UserContext.Provider 
       value={{
-        username,
-        saveUser,
         changeTheme,
-        logout
+        logout,
+        signIn, 
+        signOut,
+        session,
+        loading
       }}
     >
       {children}

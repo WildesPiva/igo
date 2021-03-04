@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { signOut } from 'next-auth/client'
 import { useRouter } from 'next/router'
 import { useContext } from 'react'
 import { UserContext } from '../contexts/UserContext'
@@ -6,11 +7,12 @@ import styles from '../styles/components/NavBar.module.css'
 
 export function NavBar () {
   const router = useRouter()
-  const { changeTheme, username, logout } = useContext(UserContext)
+  const { changeTheme, session, logout } = useContext(UserContext)
   
   const exit = () =>{
+    signOut()
     logout()
-    router.reload()
+    // router.reload()
   }
 
   return (<>
@@ -59,10 +61,10 @@ export function NavBar () {
       <div className={styles.person}>
         <button>
           <img 
-            src={`https://github.com/${username}.png`} 
+            src={session.user.image} 
             width={30}
             height={30}
-            alt={`${username}`}
+            alt={`${session.user.name}`}
           />
         </button>
         <button onClick={exit}>Sair</button>

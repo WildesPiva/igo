@@ -5,44 +5,21 @@ import styles from '../styles/Pages/Login.module.css'
 import { UserContext } from '../contexts/UserContext'
 import { GetServerSideProps } from 'next'
 
-interface LoginProps {
-  username: string
-}
 
-
-export default function Login(props:LoginProps) {
+export default function Login() {
   const router = useRouter()
-  const { saveUser, username } = useContext(UserContext)
-  const [colorButton, setColorButton] = useState(props.username ? 'var(--green)' : 'var(--blue-dark)')
-  const [valueLogin, setValueLogin] = useState(props.username)
+  const { signIn, session } = useContext(UserContext)
 
   useEffect(()=>{
-    if (username){
-      router.replace('/')
+    if (session){
+        router.replace('/')
     }else{
-      router.replace('/login')
+        router.replace('/login')
     }
   },[])
-
-  const handleChange = (e) => {
-
-    setValueLogin(e.target.value)
-
-    if (String(e.target.value)){
-      setColorButton('var(--green)')
-    }else{
-      setColorButton('var(--blue-dark)')
-    }
-
-  }
-
+      
   const handleLogin = ()=> {
-    // if (!valueLogin){
-    //   return
-    // }
-
-    saveUser(valueLogin)
-    router.replace('/')
+    signIn('google')
   }
 
   return (
@@ -63,24 +40,16 @@ export default function Login(props:LoginProps) {
 
           <p>
             <img src="icons/github.svg" alt="Level" />
-            Faça login com seu github para iniciar
+            Faça login com a sua conta Google
           </p>
 
         </div>
 
         <div className={styles.inputLogin}>
 
-          <input 
-            type="text" 
-            value={valueLogin}
-            onChange={handleChange}
-            className={styles.placeholderColor} 
-            placeholder="Digite seu username"
-          />
-
           <button 
             type="button" 
-            style={{  backgroundColor: colorButton }}
+            style={{  backgroundColor: 'var(--blue-dark)' }}
             onClick={ handleLogin }
           >
             <img src="icons/arrow-right.svg" alt="Level" />
@@ -91,15 +60,4 @@ export default function Login(props:LoginProps) {
       </section>
     </div>
   )
-}
-
-export const getServerSideProps:GetServerSideProps = async(ctx) => {
-
-  const { username } = ctx.req.cookies;
-  
-  return {
-    props:{
-      username: username ? String(username) : ''
-    }
-  }
 }
