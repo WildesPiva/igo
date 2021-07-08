@@ -1,4 +1,4 @@
-.container{
+.container {
   height: 100vh;
   max-width: 992px;
   margin: 0 auto;
@@ -18,17 +18,18 @@
   margin-bottom: 1.5rem;
 }
 
-.container section > div {
+.container section>div {
   display: flex;
 }
 
 .container table {
   flex: 1;
-  margin-top: -10px; /* correct offset on first border spacing if desired */
+  margin-top: -10px;
+  /* correct offset on first border spacing if desired */
   border-spacing: 0 10px;
 }
 
-.container table > thead > tr td {
+.container table>thead>tr td {
   font-size: .8rem;
   font-weight: bold;
   padding: 1rem 0;
@@ -37,7 +38,7 @@
   opacity: 0.5;
 }
 
-.container table > tbody > tr td:first-child {
+.container table>tbody>tr td:first-child {
   font-size: 2rem;
   width: 100px;
   font-weight: 500;
@@ -45,25 +46,25 @@
   text-align: center;
   align-items: center;
 
-  border-top-left-radius: 5px; 
+  border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-right: 5px solid var(--background);
 }
 
-.container table > tbody > tr td:last-child {
-  border-bottom-right-radius: 5px; 
-  border-top-right-radius: 5px; 
+.container table>tbody>tr td:last-child {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
-.container table > tbody > tr {
+.container table>tbody>tr {
   background-color: var(--box);
   margin-bottom: 1rem;
-} 
+}
 
-.container table > tbody > tr > td {
+.container table>tbody>tr>td {
   padding: 1rem;
 }
 
-.container table > tbody > tr > td b {
-  color: var(--blue);
+.container table>tbody>tr>td b {
+  color: var(--primary);
 }

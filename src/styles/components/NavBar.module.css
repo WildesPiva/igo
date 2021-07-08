@@ -10,12 +10,14 @@
   top: 0;
 }
 
-.container > img {
+.container>img {
   position: absolute;
   width: 3rem;
-  height: 2.5rem;
+  height: 3rem;
   top: 1.5rem;
   left: 2rem;
+  background: var(--primary);
+  padding: 5px;
 }
 
 .container nav {
@@ -36,7 +38,7 @@
   position: relative;
 }
 
-.container li a{
+.container li a {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -48,44 +50,44 @@
   width: 2rem;
   height: 2rem;
   opacity: 0.5;
-  stroke: var(--text) ;
+  stroke: var(--text);
 
-  stroke-width: 2.5; 
+  stroke-width: 2.5;
   stroke-linecap: "round";
   stroke-linejoin: "round"
 }
 
 .itemActive:before {
-	content: "";
-	position: absolute;
-	height: 100%;
-	width: 5px;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 5px;
 }
 
 .itemActive:before {
-	left: -5px;
+  left: -5px;
 
-	border-radius: 0px 5px 5px 0px;
-	-moz-border-radius: 0px 5px 5px 0px;
-	-webkit-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
 
-	-webkit-box-shadow: 5px 0 0 0 var(--blue);
-	box-shadow: 5px 0 0 0 var(--blue);
+  -webkit-box-shadow: 5px 0 0 0 var(--primary);
+  box-shadow: 5px 0 0 0 var(--primary);
 }
 
-.container li.itemActive a svg  {
+.container li.itemActive a svg {
   opacity: 1;
-  stroke: var(--blue);
+  stroke: var(--primary);
 }
 
-.theme{
- display: flex;
- justify-content: center;
- align-items: center;
- margin-bottom: 1rem;
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.theme button{
+.theme button {
   font-size: 0;
   border: 0;
   background: transparent;
@@ -97,71 +99,17 @@
   height: 2rem;
   opacity: 0.5;
   fill: var(--text);
-  stroke: var(--text) ;
+  stroke: var(--text);
 
-  stroke-width: 2.5; 
+  stroke-width: 2.5;
   stroke-linecap: "round";
   stroke-linejoin: "round"
 }
 
-.person{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.person {
   margin-bottom: 1rem;
   position: absolute;
   top: 2rem;
   right: 2rem;
   padding-top: 10px;
-  border-radius: 5px;
-  transition: all ease 0.5s;
-}
-
-.person:hover{
-  background: var(--box);
-}
-
-.person:hover button:not(:first-child){
-  visibility: visible;
-  opacity: 1;
-}
-
-.person button:focus + button:not(:first-child), .person button:not(:first-child):focus{
-  visibility: visible;
-  opacity: 1;
-}
-
-.person button:focus {
-  background: var(--box);
-}
-
-.person img {
-  border-radius: 50%;
-}
-
-.person button{
-  border: 0;
-  border-radius: 2px;
-}
-.person > button:first-child{
-  font-size: 0;
-  border-radius: 50%;
-}
-
-.person > button:not(:first-child){
-  margin-top: 10px;
-  background: transparent;
-  transition: all ease 0.5s;
-  visibility: hidden;
-  
-  opacity: 0;
-  gap: 0.5rem;
-  padding: 0 10px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--red);
-  color: var(--white);
 }

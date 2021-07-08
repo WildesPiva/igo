@@ -5,56 +5,60 @@
 }
 
 .darkTheme {
-    --box:#ffffff1a;
-    --background:#19191a;
+    --box: #3d3d3d8f;
+    --background: #19191a;
     --title: #5e6574;
     --lines: #f0f1f31c;
+    --text: #c2c2c2;
     --transparent-box: #00000048;
 }
 
 .lightTheme {
-    --box:#ffffff7e;
-    --background:#F2F3F5;
+    --box: #ffffff7e;
+    --background: #f3f3f3;
     --title: #2E384D;
-    --lines: #f0f1f3; 
+    --lines: #f0f1f3;
+    --text: #666666;
     --transparent-box: #f2f3f577;
 }
 
-:root{
-    --white:#FFFFFF;
-    --gray-line:#DCEDE0;
-    --text: #666666;
+:root {
+    --white: #FFFFFF;
+    --gray-line: #DCEDE0;
     --title-highlight: #B3B9FF;
     --red: #E83F5B;
     --green: #4CD62B;
-    --blue: #5965E0;
-    --blue-dark:#4953B8;
+    --primary: #0F9D58;
+    --primary-dark: #0a6e3e;
     --blue-twitter: #2AA9E0;
 }
 
-@media(max-width: 1080px){
-    html{
+@media(max-width: 1080px) {
+    html {
         font-size: 93.75%;
     }
 }
 
-@media(max-width: 720px){
-    html{
+@media(max-width: 720px) {
+    html {
         font-size: 87.5%;
     }
 }
 
 
-body{
+body {
     background-color: var(--background);
-    color:var(--text);
+    color: var(--text);
 }
 
-body, input, textarea, button{
+body,
+input,
+textarea,
+button {
     font: 400 1rem "Inter", sans-serif;
 }
 
-button{
+button {
     cursor: pointer;
 }
 
@@ -62,4 +66,3 @@ a {
     color: inherit;
     text-decoration: none;
 }
-

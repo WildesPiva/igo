@@ -1,0 +1,87 @@
+.user {
+    position: relative;
+    border: 4px solid var(--box);
+    border-radius: 50%;
+
+    &:active {
+        border: 4px solid var(--primary);
+    }
+
+    >button {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+        cursor: pointer;
+        border: none;
+        border-radius: 50%;
+        background: transparent;
+
+        transition: all .2s ease;
+
+        img {
+            width: 40px;
+            height: 40px;
+            // border-radius: 50%;
+        }
+    }
+}
+
+.menu {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    background: var(--box);
+    color: var(--text);
+    padding: .8rem 1rem;
+    border-radius: .25rem;
+    box-shadow: 0 .2rem .4rem rgba(0, 0, 0, .1);
+    transition: opacity .3s, visibility 0s linear .2s;
+    top: 40px;
+    right: 0px;
+    transform: translateX(10px);
+    margin: .8rem auto auto;
+    z-index: 2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 10px;
+
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+
+    span {
+        text-align: center;
+
+        p:not(:first-of-type) {
+            filter: brightness(.5);
+        }
+    }
+
+    button {
+        color: #fff;
+        border-radius: 5%;
+        background: var(--red);
+        padding: .5rem 1.2rem;
+        border: none;
+    }
+}
+
+.invisible {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.visible {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity .3s, visibility linear;
+}

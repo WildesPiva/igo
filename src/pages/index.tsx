@@ -1,16 +1,17 @@
-import  Head from 'next/head'
+import Head from 'next/head'
 import { GetServerSideProps } from 'next'
+import { NavBar } from '../components/NavBar'
 import { CompletedChallenges } from '../components/CompletedChallenges'
 import { Countdown } from '../components/Countdown'
 import { ExperienceBar } from '../components/ExperienceBar'
 import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox'
-// import { NavBar } from '../components/NavBar'
+import { CountdownProvider } from '../contexts/CountdownContext'
+import { ChalengesProvider } from '../contexts/ChallengesContext'
+import { validateLogin } from '../hooks/useAuth';
 
 
 import styles from '../styles/Pages/Home.module.css'
-import { CountdownProvider } from '../contexts/CountdownContext'
-import { ChalengesProvider } from '../contexts/ChallengesContext'
 
 interface HomeProps {
   level: number,
@@ -20,52 +21,56 @@ interface HomeProps {
   theme: string,
 }
 
-export default function Home(props:HomeProps) {
-  
+const Home = (props: HomeProps) => {
+
   return (
-  <ChalengesProvider 
-    level={props.level} 
-    currentExperience={props.currentExperience}
-    challengesCompleted={props.challengesCompleted}
-  >
-    <div className={styles.container}>
-      <Head>
-          <title>Início | I Go.it</title>
-      </Head>
+    <ChalengesProvider
+      level={props.level}
+      currentExperience={props.currentExperience}
+      challengesCompleted={props.challengesCompleted}
+    >
+      <div className={styles.container}>
+        <Head>
+          <title>Início | Se mexe ai</title>
+        </Head>
 
-      {/* <NavBar/> */}
+        <NavBar />
 
-      <ExperienceBar/>
+        <ExperienceBar />
 
-      <CountdownProvider>
-        <section>
-          <div>
-              <Profile/>
-              <CompletedChallenges/>
-              <Countdown/>
-          </div>
-          <div>
-            <ChallengeBox/>
-          </div>
-        </section>
-      </CountdownProvider>    
+        <CountdownProvider>
+          <section>
+            <div>
+              <Profile />
+              <CompletedChallenges />
+              <Countdown />
+            </div>
+            <div>
+              <ChallengeBox />
+            </div>
+          </section>
+        </CountdownProvider>
 
-    </div>
-  </ChalengesProvider>
+      </div>
+    </ChalengesProvider>
   )
 }
 
-export const getServerSideProps:GetServerSideProps = async(ctx) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { level, currentExperience, challengesCompleted, user, theme } = context.req.cookies;
 
-  const { level, currentExperience, challengesCompleted, username, theme } = ctx.req.cookies;
+  validateLogin(context)
 
   return {
-    props:{
+    props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      username: username ? String(username) : '',
+      username: user ? String(user) : '',
       theme: theme ? String(theme) : 'lightTheme'
     }
   }
 }
+
+export default Home
+// export default withAuth(Home)

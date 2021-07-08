@@ -1,8 +1,12 @@
+import Head from 'next/head'
 import { GetServerSideProps } from 'next'
-import  Head from 'next/head'
 import { ChalengesProvider } from '../contexts/ChallengesContext'
-import styles from '../styles/Pages/Ranking.module.css'
 import { Profile } from '../components/Profile'
+import { NavBar } from '../components/NavBar'
+import { validateLogin } from '../hooks/useAuth'
+
+import styles from '../styles/Pages/Ranking.module.css'
+
 // No caso com um unico user no ranking
 interface RankingProps {
   level: number,
@@ -12,20 +16,23 @@ interface RankingProps {
   theme: string
 }
 
-function Ranking(props:RankingProps) {
-  
+function Ranking(props: RankingProps) {
+
   return (
-    <ChalengesProvider 
-      level={props.level} 
+    <ChalengesProvider
+      level={props.level}
       currentExperience={props.currentExperience}
       challengesCompleted={props.challengesCompleted}
-    >    
+    >
       <div className={styles.container}>
         <Head>
-            <title>Ranking | I Go.it</title>
+          <title>Ranking | Se mexe ai</title>
         </Head>
+
+        <NavBar />
+
         <section>
-            <h1>Leaderboard</h1>
+          <h1>Leaderboard</h1>
           <div>
             <table>
               <thead>
@@ -39,10 +46,10 @@ function Ranking(props:RankingProps) {
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td><Profile/></td>
+                  <td><Profile /></td>
                   <td><b>{props.challengesCompleted}</b> completados</td>
                   <td><b>{props.currentExperience}</b> XP</td>
-                </tr>                                                                                                           
+                </tr>
               </tbody>
             </table>
           </div>
@@ -54,12 +61,14 @@ function Ranking(props:RankingProps) {
 
 }
 
-export const getServerSideProps:GetServerSideProps = async(ctx) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
 
-  const { level, currentExperience, challengesCompleted, username, theme } = ctx.req.cookies;
+  const { level, currentExperience, challengesCompleted, username, theme } = context.req.cookies;
+
+  validateLogin(context)
 
   return {
-    props:{
+    props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
