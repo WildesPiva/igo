@@ -131,6 +131,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // validateLogin(context)
 
   const user = await validadeSession(context)
+  if (!user || !user?.uid) return { props: {} as never };
 
   const themes = databaseAdmin.ref(`themes/${user.uid}`)
   const themesSnapshot = await themes.once('value')
