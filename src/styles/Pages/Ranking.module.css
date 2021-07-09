@@ -68,3 +68,23 @@
 .container table>tbody>tr>td b {
   color: var(--primary);
 }
+
+.userLogged {
+  position: relative;
+}
+
+.userLogged {
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 0px var(--primary);
+}
+
+.userLogged::after {
+  position: absolute;
+  content: "";
+  left: -5px;
+  top: calc(50% - 5px);
+  background-color: var(--primary);
+  transform: rotate(45deg);
+  height: 10px;
+  width: 10px;
+}

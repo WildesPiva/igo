@@ -72,12 +72,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   leaderboard.off('value')
   const { challengesCompleted, currentExperience, level } = valuesSnapshot.val() || {}
 
+  const themes = database.ref(`themes/${user.uid}`)
+  const themesSnapshot = await themes.once('value')
+  themes.off('value')
+
+  const { theme } = themesSnapshot.val() || { theme: 'lightTheme' }
+
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      // theme: 'lightTheme'
+      theme
     }
   }
 }

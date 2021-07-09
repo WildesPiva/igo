@@ -1,5 +1,6 @@
 import { createContext, useState, ReactNode, useEffect, useContext } from 'react'
-import Cookies from 'js-cookie'
+import { useAuthContext } from '../hooks/useAuth';
+import { database } from '../services/firebase';
 
 interface ThemeContextData {
   changeTheme: () => void
@@ -14,18 +15,23 @@ export const ThemeContext = createContext({} as ThemeContextData)
 
 export function ThemeProvider({ children, ...rest }: ThemeProviderProps) {
   const [theme, setTheme] = useState(rest.theme === 'darkTheme' ? 'darkTheme' : 'lightTheme');
+  const { user } = useAuthContext()
 
   useEffect(() => {
-    saveTheme(theme)
+    document.getElementsByTagName('html')[0].setAttribute('class', theme);
   }, [theme])
 
-  function saveTheme(theme: string) {
+  async function saveTheme(theme: string) {
 
     var root = document.getElementsByTagName('html')[0];
     root.setAttribute('class', theme);
 
     setTheme(theme)
-    Cookies.set('theme', theme)
+
+    if (user) await database.ref(`themes/${user.id}`).update({
+      theme: theme
+    })
+    // Cookies.set('theme', theme)
   }
 
   function changeTheme() {
@@ -37,13 +43,6 @@ export function ThemeProvider({ children, ...rest }: ThemeProviderProps) {
       saveTheme('darkTheme')
     }
   }
-
-  // function logout() {
-  //   Cookies.remove('level')
-  //   Cookies.remove('currentExperience')
-  //   Cookies.remove('challengesCompleted')
-  //   Cookies.remove('theme')
-  // }
 
   return (
     <ThemeContext.Provider

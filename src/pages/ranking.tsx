@@ -1,21 +1,17 @@
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
 import { GetServerSideProps } from 'next'
-import { ChalengesProvider } from '../contexts/ChallengesContext'
 import { Profile } from '../components/Profile'
 import { NavBar } from '../components/NavBar'
 
 import { validadeSession } from '../hooks/validadeSession'
 
-// import nookies from 'nookies';
-// import { auth } from '../services/firebaseAdmin'
-// import { validateLogin } from '../hooks/useAuth'
-// import { validadeSession } from '../hooks/validadeSession'
+import { database } from '../services/firebase'
+import { database as databaseAdmin } from '../services/firebaseAdmin'
+import { useAuthContext } from '../hooks/useAuth'
 
 import styles from '../styles/Pages/Ranking.module.css'
-import { database } from '../services/firebase'
 
-// No caso com um unico user no ranking
 interface RankingProps {
   level: number,
   currentExperience: number,
@@ -42,6 +38,7 @@ type UserRanking = {
 }
 
 function Ranking(props: RankingProps) {
+  const { user } = useAuthContext()
   const [usersRanking, setUsersRanking] = useState<UserRanking[]>([])
 
   useEffect(() => {
@@ -99,22 +96,25 @@ function Ranking(props: RankingProps) {
               </tr>
             </thead>
             <tbody>
-              {usersRanking.map((userRank, index) => (
-                <tr>
-                  <td>{index + 1}</td>
-                  <td>
-                    <Profile
-                      renderUser={{
-                        avatar: userRank.avatar,
-                        name: userRank.username,
-                        id: userRank.uuid
-                      }}
-                      renderLevel={userRank.level} />
-                  </td>
-                  <td><b>{userRank.challengesCompleted}</b> completados</td>
-                  <td><b>{userRank.currentExperience}</b> XP</td>
-                </tr>
-              ))}
+              {usersRanking.map((userRank, index) => {
+                const isAuthenticatedUser = Boolean((userRank?.uuid === user?.id) && userRank)
+                return (
+                  <tr className={isAuthenticatedUser ? styles.userLogged : ''} key={userRank.uuid}>
+                    <td>{index + 1}</td>
+                    <td>
+                      <Profile
+                        renderUser={{
+                          avatar: userRank.avatar,
+                          name: userRank.username,
+                          id: userRank.uuid
+                        }}
+                        renderLevel={userRank.level} />
+                    </td>
+                    <td><b>{userRank.challengesCompleted}</b> completados</td>
+                    <td><b>{userRank.currentExperience}</b> XP</td>
+                  </tr>
+                )
+              })}
             </tbody>
           </table>
         </div>
@@ -132,9 +132,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const user = await validadeSession(context)
 
+  const themes = databaseAdmin.ref(`themes/${user.uid}`)
+  const themesSnapshot = await themes.once('value')
+  themes.off('value')
+
+  const { theme } = themesSnapshot.val() || { theme: 'lightTheme' }
+
   return {
     props: {
-
+      theme
     }
   }
 }
