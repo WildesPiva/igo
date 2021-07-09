@@ -63,7 +63,9 @@ export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
 
     const signInWithGoogle = async () => {
         const authProviderGoogle = new firebase.auth.GoogleAuthProvider()
-
+        authProviderGoogle.setCustomParameters({
+            prompt: 'select_account'
+        })
         const result = await auth.signInWithPopup(authProviderGoogle)
 
         if (result.user) {
