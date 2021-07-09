@@ -73,6 +73,11 @@
         padding: .5rem 1.2rem;
         border: none;
     }
+
+    button.themeBtn {
+        background: var(--background);
+        color: var(--text)
+    }
 }
 
 .invisible {

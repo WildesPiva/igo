@@ -4,6 +4,7 @@ import { database } from '../services/firebase';
 
 interface ThemeContextData {
   changeTheme: () => void
+  theme: string
 }
 
 interface ThemeProviderProps {
@@ -47,7 +48,8 @@ export function ThemeProvider({ children, ...rest }: ThemeProviderProps) {
   return (
     <ThemeContext.Provider
       value={{
-        changeTheme
+        changeTheme,
+        theme
       }}
     >
       {children}
