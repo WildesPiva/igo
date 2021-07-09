@@ -179,4 +179,35 @@
   }
 }
 
-@media(max-width: 720px) {}
+@media(max-width: 500px) {
+  .container {
+    height: 4rem;
+    bottom: calc(100% - 4rem);
+  }
+
+  .container>img {
+    top: 1rem;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .container li a svg {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .itemActive:before {
+    bottom: -2px;
+  }
+
+
+  .theme {
+    top: 1rem;
+  }
+
+  .theme button svg {
+    width: 2rem;
+    height: 2rem;
+  }
+}
