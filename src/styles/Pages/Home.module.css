@@ -1,4 +1,4 @@
-.container{
+.container {
   height: 100vh;
   max-width: 992px;
   margin: 0 auto;
@@ -17,6 +17,33 @@
   margin-left: 7rem;
 }
 
-.container section > div {
+.container section>div {
   height: 100%;
+}
+
+@media(max-width: 1080px) {
+
+  .container section {
+    margin-left: 0;
+    margin-bottom: 7rem;
+  }
+}
+
+@media(max-width: 720px) {
+  .container section {
+    gap: 3rem;
+    grid-template-columns: inherit;
+    flex-direction: column-reverse;
+    display: flex;
+  }
+
+  .container section>div {
+    margin-top: 1rem;
+  }
+}
+
+@media(max-width: 500px) {
+  .container section {
+    padding: 1rem;
+  }
 }

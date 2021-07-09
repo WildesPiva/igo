@@ -2,20 +2,23 @@
   width: 7rem;
   background: linear-gradient(180deg, var(--box) 0%, rgba(255, 255, 255, 0) 100%);
   filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.05));
-  position: absolute;
+  position: fixed;
   flex-direction: column;
   display: flex;
   bottom: 0;
   left: 0;
   top: 0;
+  z-index: 1;
 }
 
-.container > img {
+.container>img {
   position: absolute;
   width: 3rem;
-  height: 2.5rem;
+  height: 3rem;
   top: 1.5rem;
   left: 2rem;
+  background: var(--primary);
+  padding: 5px;
 }
 
 .container nav {
@@ -36,7 +39,7 @@
   position: relative;
 }
 
-.container li a{
+.container li a {
   flex: 1;
   display: flex;
   justify-content: center;
@@ -48,44 +51,44 @@
   width: 2rem;
   height: 2rem;
   opacity: 0.5;
-  stroke: var(--text) ;
+  stroke: var(--text);
 
-  stroke-width: 2.5; 
+  stroke-width: 2.5;
   stroke-linecap: "round";
   stroke-linejoin: "round"
 }
 
 .itemActive:before {
-	content: "";
-	position: absolute;
-	height: 100%;
-	width: 5px;
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 5px;
 }
 
 .itemActive:before {
-	left: -5px;
+  left: -5px;
 
-	border-radius: 0px 5px 5px 0px;
-	-moz-border-radius: 0px 5px 5px 0px;
-	-webkit-border-radius: 0px 5px 5px 0px;
+  border-radius: 0px 5px 5px 0px;
+  -moz-border-radius: 0px 5px 5px 0px;
+  -webkit-border-radius: 0px 5px 5px 0px;
 
-	-webkit-box-shadow: 5px 0 0 0 var(--blue);
-	box-shadow: 5px 0 0 0 var(--blue);
+  -webkit-box-shadow: 5px 0 0 0 var(--primary);
+  box-shadow: 5px 0 0 0 var(--primary);
 }
 
-.container li.itemActive a svg  {
+.container li.itemActive a svg {
   opacity: 1;
-  stroke: var(--blue);
+  stroke: var(--primary);
 }
 
-.theme{
- display: flex;
- justify-content: center;
- align-items: center;
- margin-bottom: 1rem;
+.theme {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.theme button{
+.theme button {
   font-size: 0;
   border: 0;
   background: transparent;
@@ -97,71 +100,128 @@
   height: 2rem;
   opacity: 0.5;
   fill: var(--text);
-  stroke: var(--text) ;
+  stroke: var(--text);
 
-  stroke-width: 2.5; 
+  stroke-width: 2.5;
   stroke-linecap: "round";
   stroke-linejoin: "round"
 }
 
-.person{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+.person {
   margin-bottom: 1rem;
-  position: absolute;
+  position: fixed;
   top: 2rem;
-  right: 2rem;
+  right: 5rem;
   padding-top: 10px;
-  border-radius: 5px;
-  transition: all ease 0.5s;
+  z-index: 1;
 }
 
-.person:hover{
-  background: var(--box);
+
+@media(max-width: 1080px) {
+  .container {
+    width: 100%;
+    height: 7rem;
+    background: var(--box-solid);
+    /* background: linear-gradient(180deg, var(--box-solid) 0%, rgba(255, 255, 255, 0) 100%); */
+    filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.05));
+    position: fixed;
+    flex-direction: row;
+    display: flex;
+    top: 0;
+    right: 0;
+    bottom: calc(100% - 7rem);
+  }
+
+  .container>img {
+    top: 1.4rem;
+    left: 1.2rem;
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .container ul {
+    width: inherit;
+    display: flex;
+    gap: 4rem;
+  }
+
+  .container li {
+    display: block;
+    margin-top: 0;
+  }
+
+  .container li a svg {
+    margin: 0.5rem 0;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .itemActive:before {
+    height: 5px;
+    width: 100%;
+    left: 0px;
+    bottom: -15px;
+    box-shadow: 0px 5px 0px 0px var(--primary);
+    border-radius: 5px 5px 0px 0px;
+    -moz-border-radius: 5px 5px 0px 0px;
+    -webkit-border-radius: 5px 5px 0px 0px;
+  }
+
+  .theme {
+    display: none;
+  }
+
+  .person {
+    top: 2rem;
+    right: 4rem;
+    padding-top: 0;
+  }
+
+  /* .theme {
+    top: 2rem;
+    right: 1.2rem;
+    position: absolute;
+  }
+
+  .theme button svg {
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+  } */
 }
 
-.person:hover button:not(:first-child){
-  visibility: visible;
-  opacity: 1;
-}
+@media(max-width: 500px) {
+  .container {
+    height: 4rem;
+    bottom: calc(100% - 4rem);
+  }
 
-.person button:focus + button:not(:first-child), .person button:not(:first-child):focus{
-  visibility: visible;
-  opacity: 1;
-}
+  .container>img {
+    top: 1rem;
+    left: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
 
-.person button:focus {
-  background: var(--box);
-}
+  .container li a svg {
+    width: 2rem;
+    height: 2rem;
+  }
 
-.person img {
-  border-radius: 50%;
-}
+  .itemActive:before {
+    bottom: -2px;
+  }
 
-.person button{
-  border: 0;
-  border-radius: 2px;
-}
-.person > button:first-child{
-  font-size: 0;
-  border-radius: 50%;
-}
+  .person {
+    top: .5rem;
+  }
 
-.person > button:not(:first-child){
-  margin-top: 10px;
-  background: transparent;
-  transition: all ease 0.5s;
-  visibility: hidden;
-  
-  opacity: 0;
-  gap: 0.5rem;
-  padding: 0 10px;
-  text-transform: uppercase;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--red);
-  color: var(--white);
+  /* .theme {
+    top: 1rem;
+  }
+
+  .theme button svg {
+    width: 2rem;
+    height: 2rem;
+  } */
 }

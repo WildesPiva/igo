@@ -1,9 +1,10 @@
-.container{
+.container {
   color: var(--white);
-  background: var(--blue);
+  background: var(--primary);
   height: 100vh;
   padding: 2rem 0;
   display: flex;
+  font-weight: 900;
 }
 
 .logoGrande {
@@ -23,27 +24,27 @@
   margin-bottom: 3rem;
 }
 
-.container section > div {
+.container section>div {
   margin-top: 3rem;
   text-align: left;
   width: 100%;
 }
 
-.apresentation strong{
+.apresentation strong {
   font-size: 2rem;
-  font-weight: 600;
+  /* font-weight: 800; */
   line-height: 1.4;
 }
 
-.apresentation > p {
-  color: #b3b9ff;
+.apresentation>p {
+  color: #ffffff;
   display: flex;
   max-width: 280px;
   margin-top: 1.5rem;
   font-size: 1rem;
 }
 
-.apresentation > p > img{
+.apresentation>p>img {
   margin-right: 0.8rem;
   width: 45px;
 }
@@ -54,18 +55,18 @@
   font-size: 1rem;
 }
 
-.inputLogin > input {
+.inputLogin>input {
   border: 0;
   padding: 1rem;
   color: var(--white);
-  outline-color: var(--blue);
+  outline-color: var(--primary);
 
-  background: linear-gradient(90deg, var(--blue-dark) 0%, rgba(73, 83, 184, 0.2) 100%);
-  border-radius: 5px 0px 0px 5px;  
+  background: linear-gradient(90deg, var(--primary-dark) 0%, rgba(73, 83, 184, 0.2) 100%);
+  border-radius: 5px 0px 0px 5px;
 }
 
 
-input[type="text"].placeholderColor::-webkit-input-placeholder{
+input[type="text"].placeholderColor::-webkit-input-placeholder {
   color: #b3b9ff;
 }
 
@@ -73,15 +74,49 @@ input[type="text"].placeholderColor::-moz-placeholder {
   color: #b3b9ff;
 }
 
-.inputLogin > button {
+.inputLogin>button {
   font-size: 0;
   border: 0;
   padding: 1rem;
-  outline-color: var(--blue);  
+  outline-color: var(--primary-dark);
   border-radius: 5px 0;
+  transition: all .3s;
 }
 
-.inputLogin > button > img {
+.inputLogin>button:active {
+  transform: scale(.8);
+}
+
+.inputLogin>button>img {
   width: 15px;
   height: 15px;
+}
+
+
+@media(max-width: 1080px) {
+  .logoGrande {
+    position: fixed;
+    max-height: 100%;
+    z-index: -1;
+  }
+
+  .logoMoveit {
+    width: 100%;
+  }
+
+  .inputLogin {
+    display: flex;
+  }
+
+  .inputLogin>button {
+    flex: 1;
+  }
+}
+
+@media(max-width: 720px) {
+
+  .container section {
+    margin: auto 50px;
+  }
+
 }

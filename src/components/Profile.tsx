@@ -1,22 +1,37 @@
 import { useContext } from 'react';
 import { ChallengesContext } from '../contexts/ChallengesContext';
-import { UserContext } from '../contexts/UserContext';
+import { useAuthContext } from '../hooks/useAuth';
+
 import styles from '../styles/components/Profile.module.css';
 
-export function Profile() {
+type User = {
+  id: string,
+  name: string,
+  avatar: string,
+}
+
+type ProfileProps = {
+  renderUser?: User
+  renderLevel?: number
+  inTable?: boolean
+}
+
+export function Profile({ renderUser, renderLevel, inTable }: ProfileProps) {
   const { level } = useContext(ChallengesContext)
-  const { session } = useContext(UserContext)
+  const { user } = useAuthContext()
+  const finalUser = renderUser || user
+  const finalLevel = renderLevel || level
 
   return (
-    <div className={styles.profileContainer}>
-      <img src={session.user.image} alt={session.user.name}/>
+    <div className={`${styles.profileContainer} ${inTable ? styles.resposible : ''}`}>
+      <img src={finalUser?.avatar} alt={finalUser?.name} />
       <div>
-        <strong>{session.user.name}</strong>
+        <strong>{finalUser?.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
-          Level {level}
+          Level {finalLevel}
         </p>
       </div>
     </div>
-    )
-  }
+  )
+}

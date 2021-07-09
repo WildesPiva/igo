@@ -11,7 +11,8 @@
   align-items: center;
 
   -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);  
+  backdrop-filter: blur(8px);
+  z-index: 2;
 }
 
 .container {
@@ -28,7 +29,7 @@
 .container header {
   font-size: 8.75rem;
   font-weight: 600;
-  color: var(--blue);
+  color: var(--primary);
   background: url('/icons/levelup.svg') no-repeat center;
   background-size: contain;
 }
@@ -51,5 +52,5 @@
   background: transparent;
   border: 0;
   font-size: 0;
-  outline-color: var(--blue);
+  outline-color: var(--primary);
 }
