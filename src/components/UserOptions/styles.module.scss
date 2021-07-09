@@ -1,5 +1,5 @@
 .user {
-    position: relative;
+    position: absolute;
     border: 4px solid var(--box);
     border-radius: 50%;
 
@@ -89,7 +89,7 @@
 
 @media(max-width: 1080px) {
     .user {
-        display: none;
+        // display: none;
     }
 
 }
