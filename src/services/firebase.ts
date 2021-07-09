@@ -18,6 +18,6 @@ if (!firebase.apps.length) {
 }
 
 const auth = firebase.auth()
-const database = firebase.database()
+const database = process.browser ? firebase.database() : undefined
 
 export { firebase, auth, database }
