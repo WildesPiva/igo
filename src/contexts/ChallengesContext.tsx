@@ -84,6 +84,8 @@ export function ChalengesProvider({ children, ...rest }: ChalengesProviderProps)
   }, [level, currentExperience, challengesCompleted])
 
   function startNewChallenge() {
+    window.scrollTo(0, 0);
+
     const randomChallengeIndex = Math.floor(Math.random() * challenges.length)
     const challenge = challenges[randomChallengeIndex]
 

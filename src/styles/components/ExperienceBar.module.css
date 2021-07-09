@@ -44,3 +44,9 @@ span.currentExperience {
 }
 
 @media(max-width: 720px) {}
+
+@media(max-width: 500px) {
+    .experienceBar {
+        margin-top: 3rem;
+    }
+}

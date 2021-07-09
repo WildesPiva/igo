@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 .darkTheme {
     --box: #3d3d3d8f;
     --box-solid: #3d3d3d;

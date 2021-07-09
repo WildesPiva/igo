@@ -115,6 +115,12 @@
   }
 }
 
+@media(max-width: 500px) {
+  .container section {
+    margin-top: 3rem;
+  }
+}
+
 @media(max-width: 400px) {
   .container table>tbody>tr td:first-child {
     width: inherit;
