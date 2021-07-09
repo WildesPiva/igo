@@ -9,9 +9,11 @@
   },
   "dependencies": {
     "firebase": "^8.7.0",
+    "firebase-admin": "^9.10.0",
     "js-cookie": "^2.2.1",
     "next": "10.0.7",
     "next-auth": "^3.7.0",
+    "nookies": "^2.5.2",
     "react": "17.0.1",
     "react-accessible-dropdown-menu-hook": "^2.3.0",
     "react-dom": "17.0.1",

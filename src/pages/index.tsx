@@ -8,10 +8,11 @@ import { Profile } from '../components/Profile'
 import { ChallengeBox } from '../components/ChallengeBox'
 import { CountdownProvider } from '../contexts/CountdownContext'
 import { ChalengesProvider } from '../contexts/ChallengesContext'
-import { validateLogin } from '../hooks/useAuth';
-
+// import { validateLogin } from '../hooks/useAuth';
 
 import styles from '../styles/Pages/Home.module.css'
+import { validadeSession } from '../hooks/validadeSession'
+import { database } from '../services/firebaseAdmin'
 
 interface HomeProps {
   level: number,
@@ -57,20 +58,28 @@ const Home = (props: HomeProps) => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { level, currentExperience, challengesCompleted, user, theme } = context.req.cookies;
 
-  validateLogin(context)
+  // const { level, currentExperience, challengesCompleted, theme } = context.req.cookies;
+  // validateLogin(context)
+
+  const user = await validadeSession(context)
+
+  if (!user.uid) return
+
+
+  const leaderboard = database.ref(`leaderboard/${user.uid}`)
+  const valuesSnapshot = await leaderboard.once('value')
+  leaderboard.off('value')
+  const { challengesCompleted, currentExperience, level } = valuesSnapshot.val() || {}
 
   return {
     props: {
       level: Number(level),
       currentExperience: Number(currentExperience),
       challengesCompleted: Number(challengesCompleted),
-      username: user ? String(user) : '',
-      theme: theme ? String(theme) : 'lightTheme'
+      // theme: 'lightTheme'
     }
   }
 }
-
 export default Home
 // export default withAuth(Home)

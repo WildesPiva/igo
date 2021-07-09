@@ -4,18 +4,32 @@ import { useAuthContext } from '../hooks/useAuth';
 
 import styles from '../styles/components/Profile.module.css';
 
-export function Profile() {
+type User = {
+  id: string,
+  name: string,
+  avatar: string,
+}
+
+type ProfileProps = {
+  renderUser?: User,
+  renderLevel?: number
+}
+
+export function Profile({ renderUser, renderLevel }: ProfileProps) {
   const { level } = useContext(ChallengesContext)
   const { user } = useAuthContext()
+  const isAuthenticatedUser = Boolean((renderUser?.id === user?.id) && renderUser)
+  const finalUser = renderUser || user
+  const finalLevel = renderLevel || level
 
   return (
-    <div className={styles.profileContainer}>
-      <img src={user?.avatar} alt={user?.name} />
+    <div className={`${styles.profileContainer} ${isAuthenticatedUser ? styles.currentUser : ''}`}>
+      <img src={finalUser?.avatar} alt={finalUser?.name} />
       <div>
-        <strong>{user?.name}</strong>
+        <strong>{finalUser?.name}</strong>
         <p>
           <img src="icons/level.svg" alt="Level" />
-          Level {level}
+          Level {finalLevel}
         </p>
       </div>
     </div>

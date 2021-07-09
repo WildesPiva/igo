@@ -1,7 +1,8 @@
 import { createContext, useState, ReactNode, useEffect } from 'react'
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
 import { LevelUpModal } from '../components/LevelUpModal';
-import { database } from '../services/firebase';
+import { useAuthContext } from '../hooks/useAuth';
+import { auth, database } from '../services/firebase';
 
 interface Challenge {
   type: 'body' | 'eye',
@@ -32,6 +33,7 @@ interface ChalengesProviderProps {
 export const ChallengesContext = createContext({} as ChallengesContextData)
 
 export function ChalengesProvider({ children, ...rest }: ChalengesProviderProps) {
+  const { user } = useAuthContext()
   const [level, setLevel] = useState(rest.level ?? 1);
   const [currentExperience, setCurrentExperience] = useState(rest.currentExperience ?? 0);
   const [challengesCompleted, setChallengesCompleted] = useState(rest.challengesCompleted ?? 0);
@@ -63,11 +65,21 @@ export function ChalengesProvider({ children, ...rest }: ChalengesProviderProps)
     Notification.requestPermission()
   }, [])
 
-  useEffect(() => {
+  const registerData = async (
+    level: number, currentExperience: number,
+    challengesCompleted: number, username: string, avatar: string) => {
+    if (user) await database.ref(`leaderboard/${user.id}`).update({
+      level, currentExperience, challengesCompleted, username, avatar
+    })
+  }
 
-    Cookies.set('level', String(level))
-    Cookies.set('currentExperience', String(currentExperience))
-    Cookies.set('challengesCompleted', String(challengesCompleted))
+  useEffect(() => {
+    if ((level || currentExperience || challengesCompleted) && user) {
+      registerData(level, currentExperience, challengesCompleted, user.name, user.avatar)
+    }
+    // Cookies.set('level', String(level))
+    // Cookies.set('currentExperience', String(currentExperience))
+    // Cookies.set('challengesCompleted', String(challengesCompleted))
 
   }, [level, currentExperience, challengesCompleted])
 

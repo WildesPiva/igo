@@ -1,6 +1,7 @@
 import { ReactNode, useState, useEffect, createContext } from 'react'
 import { auth, firebase } from '../services/firebase'
-import Cookies from 'js-cookie'
+import nookies from 'nookies';
+// import Cookies from 'js-cookie'
 
 type UserType = {
     id: string,
@@ -22,31 +23,43 @@ type AuthContextProviderType = {
 export const AuthContext = createContext({} as AuthContextType)
 
 export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
-    const [user, setUser] = useState<UserType>()
+    const [user, setUser] = useState<UserType | null>(null)
 
-    useEffect(() => { if (user) Cookies.set('user', user) }, [user])
-
+    // listen for token changes
+    // call setUser and write new token as a cookie
     useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-                const { displayName, email, photoURL, uid } = user
+        return auth.onIdTokenChanged(async (user) => {
+            if (!user) {
+                setUser(null);
+                nookies.set(undefined, 'token', '', { path: '/' });
+            } else {
+                const token = await user.getIdToken();
 
+                const { displayName, email, photoURL, uid } = user
                 if (!displayName || !photoURL || !email) {
                     throw new Error("Missing information from Google Acount");
                 }
-
                 setUser({
                     id: uid,
                     name: displayName,
                     avatar: photoURL,
                     email
                 })
+                nookies.set(undefined, 'token', token, { path: '/' });
             }
-        })
-        return () => {
-            unsubscribe()
-        }
-    }, [])
+        });
+    }, []);
+
+    // force refresh the token every 10 minutes
+    useEffect(() => {
+        const handle = setInterval(async () => {
+            const user = auth.currentUser;
+            if (user) await user.getIdToken(true);
+        }, 10 * 60 * 1000);
+        // clean up setInterval
+        return () => clearInterval(handle);
+    }, []);
+
 
     const signInWithGoogle = async () => {
         const authProviderGoogle = new firebase.auth.GoogleAuthProvider()
@@ -72,9 +85,10 @@ export const AuthContextProvider = ({ children }: AuthContextProviderType) => {
 
     const signOutFirebase = async () => {
         await firebase.auth().signOut().then(() => {
-            setUser(undefined)
+            setUser(null)
             // Sign-out successful.
-            Cookies.remove('user')
+            // Cookies.remove('user')
+            nookies.set(undefined, 'token', '', { path: '/' });
         }).catch((error) => {
             // An error happened.
         });
