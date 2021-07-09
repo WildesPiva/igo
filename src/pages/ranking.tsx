@@ -103,6 +103,7 @@ function Ranking(props: RankingProps) {
                     <td>{index + 1}</td>
                     <td>
                       <Profile
+                        inTable
                         renderUser={{
                           avatar: userRank.avatar,
                           name: userRank.username,

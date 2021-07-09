@@ -91,3 +91,32 @@ input[type="text"].placeholderColor::-moz-placeholder {
   width: 15px;
   height: 15px;
 }
+
+
+@media(max-width: 1080px) {
+  .logoGrande {
+    position: fixed;
+    max-height: 100%;
+    z-index: -1;
+  }
+
+  .logoMoveit {
+    width: 100%;
+  }
+
+  .inputLogin {
+    display: flex;
+  }
+
+  .inputLogin>button {
+    flex: 1;
+  }
+}
+
+@media(max-width: 720px) {
+
+  .container section {
+    margin: auto 50px;
+  }
+
+}

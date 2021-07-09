@@ -85,3 +85,11 @@
     visibility: visible;
     transition: opacity .3s, visibility linear;
 }
+
+
+@media(max-width: 1080px) {
+    .user {
+        display: none;
+    }
+
+}

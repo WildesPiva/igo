@@ -28,6 +28,33 @@
   margin-right: 0.5rem;
 }
 
-.currentUser {
-  border-right: 5px solid yellow;
+@media(max-width: 1080px) {
+  .resposible {
+    flex-direction: column;
+  }
+
+  .resposible>div {
+    margin-left: 0rem;
+  }
+
+  .resposible>img {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+
+  .resposible>div>strong {
+    font-size: .9rem;
+  }
+
+  .resposible>div>p {
+    font-size: .8rem;
+    margin-top: 0.5rem;
+  }
+
+  .resposible>div>p>img {
+    width: 10px;
+  }
 }
+
+@media(max-width: 720px) {}

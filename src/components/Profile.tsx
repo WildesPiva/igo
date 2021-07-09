@@ -11,18 +11,19 @@ type User = {
 }
 
 type ProfileProps = {
-  renderUser?: User,
+  renderUser?: User
   renderLevel?: number
+  inTable?: boolean
 }
 
-export function Profile({ renderUser, renderLevel }: ProfileProps) {
+export function Profile({ renderUser, renderLevel, inTable }: ProfileProps) {
   const { level } = useContext(ChallengesContext)
   const { user } = useAuthContext()
   const finalUser = renderUser || user
   const finalLevel = renderLevel || level
 
   return (
-    <div className={`${styles.profileContainer}`}>
+    <div className={`${styles.profileContainer} ${inTable ? styles.resposible : ''}`}>
       <img src={finalUser?.avatar} alt={finalUser?.name} />
       <div>
         <strong>{finalUser?.name}</strong>
