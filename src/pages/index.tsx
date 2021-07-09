@@ -64,7 +64,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   const user = await validadeSession(context)
 
-  if (!user.uid) return
+  if (!user || !user?.uid) return { props: {} as never };
 
 
   const leaderboard = database.ref(`leaderboard/${user.uid}`)
