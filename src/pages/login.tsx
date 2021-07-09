@@ -27,7 +27,7 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Login | I Go.it</title>
+        <title>Login | Se mexe ai</title>
       </Head>
 
       <img src="/icons/simbol.svg" alt="Simbolo Grande" className={styles.logoGrande} />

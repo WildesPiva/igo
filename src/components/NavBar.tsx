@@ -12,7 +12,7 @@ export function NavBar() {
 
   return (<>
     <div className={styles.container}>
-      <img src="/logo-small-simple.png" alt="Se mexe ai" />
+      <img src="/logo.png" alt="Se mexe ai" />
       <nav>
         <ul>
 
