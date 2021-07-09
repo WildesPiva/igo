@@ -3,16 +3,12 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/workflow/status/wildespiva/se-mexe-ai/Deploy%20to%20Firebase%20Hosting%20on%20merge?labelColor=000000" />
     <img src="https://img.shields.io/github/last-commit/wildespiva/se-mexe-ai/main?labelColor=000000" />    
 </p>
 
 <h1 align="center">
-    <img alt="Se mexe ai desktop" src=".github/screen_navigator.png" />   
-</h1>
-
-<h1 align="center">
-    <img alt="Se mexe ai mobile" src=".github/screen_mobile.jpg" />   
+    <img alt="Se mexe ai desktop" src=".github/screen_navigator.png" width="500px"/>   
+    <img alt="Se mexe ai mobile" src=".github/screen_mobile.jpg" width="200px"/>   
 </h1>
 
 <br>
